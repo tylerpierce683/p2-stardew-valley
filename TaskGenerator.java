@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * @author Tyler Pierce
  *
@@ -17,6 +19,7 @@ public class TaskGenerator implements TaskGeneratorInterface {
 	public TaskGenerator(double taskGenerationProbability) {
 		currentEnergyStorage = DEFAULT_ENERGY;
 		this.taskGenerationProbability = taskGenerationProbability;
+		this.seed = 0;
 	}
 	
 	@Override
@@ -48,16 +51,29 @@ public class TaskGenerator implements TaskGeneratorInterface {
 
 	@Override
 	public boolean generateTask() {
-		// TODO Auto-generated method stub
-		return false;
+		Random rand = new Random(this.seed);
+		Double randDouble = rand.nextDouble(1);
+		if (randDouble <= this.taskGenerationProbability) {
+			return true;
+		} else {
+			return false; 
+		}
 	}
 
 	@Override
 	public int getUnlucky(Task task, double unluckyProbability) {
-		if ()
-		
-		// TODO Auto-generated method stub
-		return 0;
+		if (unluckyProbability <= task.getTaskType().getPassingOutProbability()) {
+			if (unluckyProbability <= task.getTaskType().getDyingProbability()) {
+				currentEnergyStorage = (int)(currentEnergyStorage * 0.25);
+				task.setPriority(0);
+				return DEATH;
+			} else {
+				currentEnergyStorage = currentEnergyStorage / 2;
+				return PASSED_OUT;
+			}
+		} else {
+			return SURVIVED;
+		}
 	}
 
 	@Override
