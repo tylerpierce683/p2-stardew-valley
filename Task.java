@@ -83,24 +83,24 @@ public class Task implements TaskInterface, Comparable {
 	 * @param task - the Task
 	 * @param taskType - the Task's type
 	 */
-	public String toString(Task task, Task.TaskType taskType) {
+	public String toString() {
 	        if(taskType == Task.TaskType.MINING) {
-	            return "     Mining " + task.getTaskDescription() + " (Priority:" + task.getPriority() +")";
+	            return "     Mining " + getTaskDescription() + " (Priority:" + getPriority() +")";
 	        }
 	        if(taskType == Task.TaskType.FISHING) {
-	            return "     Fishing " + task.getTaskDescription() + " (Priority:" + task.getPriority() +")" ;
+	            return "     Fishing " + getTaskDescription() + " (Priority:" + getPriority() +")" ;
 	        }
 	        if(taskType == Task.TaskType.FARM_MAINTENANCE) {
-	            return "     Farm Maintenance " + task.getTaskDescription() + " (Priority:" + task.getPriority() +")";
+	            return "     Farm Maintenance " + getTaskDescription() + " (Priority:" + getPriority() +")";
 	        }
 	        if(taskType == Task.TaskType.FORAGING) {
-	            return "     Foraging " + task.getTaskDescription() + " (Priority:" + task.getPriority() +")" ;
+	            return "     Foraging " + getTaskDescription() + " (Priority:" + getPriority() +")" ;
 	        }
 	        if(taskType == Task.TaskType.FEEDING) {
-	            return "     Feeding " + task.getTaskDescription() + " (Priority:" + task.getPriority() +")";
+	            return "     Feeding " + getTaskDescription() + " (Priority:" + getPriority() +")";
 	        }
 	        if(taskType == Task.TaskType.SOCIALIZING) {
-	            return "     Socializing " + task.getTaskDescription() + " (Priority:" + task.getPriority() +")";
+	            return "     Socializing " + getTaskDescription() + " (Priority:" + getPriority() +")";
 	        }
 	        else { return "nothing to see here..."; }
 	}

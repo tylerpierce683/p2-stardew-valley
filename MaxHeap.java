@@ -42,7 +42,7 @@ public class MaxHeap {
 		 checkForExpansion();
 		 heapArray[size] = task;
 		 size++;
-		 bubbleUp(size);
+		 bubbleUp(size - 1);
 	 }
 	 
 	 public void increaseKey(int index, Task task) throws HeapException{
@@ -54,7 +54,7 @@ public class MaxHeap {
 	 }
 	 
 	 private void checkForExpansion() {
-		 if ((heapArray[size - 1]) != null) {
+		 if (size != 0 && (heapArray[size - 1]) != null) {
 			 Arrays.copyOf(heapArray, size * 2);
 		 }
 	 }
@@ -91,12 +91,12 @@ public class MaxHeap {
 		 int l = getLeft(index);
 		 int r = getRight(index);
 		 int largest = 0;
-		 if ((l < heapArray.length) && (heapArray[l].compareTo(heapArray[index]) > 0)) {
+		 if ((l < size) && (heapArray[l].compareTo(heapArray[index]) > 0)) {
 			 largest = l;
 		 } else {
 			 largest = index;
 		 }
-		 if ((r < heapArray.length) && (heapArray[r].compareTo(heapArray[largest]) > 0)) {
+		 if ((r < size) && (heapArray[r].compareTo(heapArray[largest]) > 0)) {
 			 largest = r;
 		 }
 		 if (largest != index) {
@@ -148,5 +148,13 @@ public class MaxHeap {
 	  */
 	 private int getRight(int taskIndex) {
 		 return ((2 * taskIndex) + 2);
+	 }
+
+	 public Task[] getHeapArray() {
+		Task[] heapArrayCopy = new Task[heapArray.length];
+		for (int i = 0; i < heapArray.length; i++) {
+			heapArrayCopy[i] = heapArray[i];
+		}
+		return heapArrayCopy;
 	 }
 }
