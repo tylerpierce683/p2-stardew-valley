@@ -1,8 +1,9 @@
 import java.util.Random;
 
 /**
+ * TaskGenerator class for creating Task Generator objects used to create and manage tasks
  * @author Tyler Pierce
- *
+ * @version Spring 2023
  */
 public class TaskGenerator implements TaskGeneratorInterface {
 
@@ -10,12 +11,21 @@ public class TaskGenerator implements TaskGeneratorInterface {
 	private double taskGenerationProbability;
 	private long seed;
 	
+	/**
+	 * Overloaded constructor for a task generator object used for creating tasks.
+	 * @param taskGenerationProbability the probability of a task being created (the higher, the more probable)
+	 * @param seed seed value for seeding random in task generation
+	 */
 	public TaskGenerator(double taskGenerationProbability, long seed) {
 		this.currentEnergyStorage = DEFAULT_ENERGY;
 		this.taskGenerationProbability = taskGenerationProbability;
 		this.seed = seed;
 	}
 	
+	/**
+	 * Constructor for creating task generators used for creating tasks
+	 * @param taskGenerationProbability the probability of a task being created (the higher, the more probable)
+	 */
 	public TaskGenerator(double taskGenerationProbability) {
 		currentEnergyStorage = DEFAULT_ENERGY;
 		this.taskGenerationProbability = taskGenerationProbability;

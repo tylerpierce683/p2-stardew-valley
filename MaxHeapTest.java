@@ -1,6 +1,8 @@
 /**
+ * Test class for MaxHeap. Runs different tests on the max heap. 
+ * (Not fully complete)
  * @author Tyler Pierce
- *
+ * @version Spring 2023
  */
 public class MaxHeapTest {
 	int totalRun = 0;
@@ -35,7 +37,7 @@ public class MaxHeapTest {
 		else { 
 			failures++; 
 		}
-		System.out.printf("%-46s\t%s\n", desc, (result ? "   PASS" : "***FAIL***"));
+		System.out.printf("%-80s\t%s\n", desc, (result ? "   PASS" : "***FAIL***"));
 	}
 	
 	private void printSummary() {
@@ -136,7 +138,7 @@ public class MaxHeapTest {
 		sortTestHeap.insert(dummyTask1);
 		sortTestHeap.insert(dummyTask2);
 		try {
-			sortTestHeap.increaseKey(0, dummyTask2);
+			sortTestHeap.increaseKey(1, dummyTask1);
 			Task returnTask1 = sortTestHeap.extractMax();
 			Task returnTask2 = sortTestHeap.extractMax();
 			if (returnTask1.equals(dummyTask2) && returnTask2.equals(dummyTask1)) {

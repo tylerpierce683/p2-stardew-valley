@@ -1,8 +1,10 @@
 import java.util.Arrays;
 
 /**
+ * MaxHeap Class that contains all of the methods required to create and 
+ * maintain a max heap that uses an array as an underlying structure.
  * @author Tyler Pierce
- *
+ * @version Spring 2023
  */
 public class MaxHeap {
 	private final int DEFAULT_SIZE = 10;
@@ -10,7 +12,7 @@ public class MaxHeap {
 	private int size = 0;
 	
 	/**
-	 * default constructor
+	 * default constructor creating a new MaxHeap with default values.
 	 */
 	 public MaxHeap() {
 		 heapArray = new Task[DEFAULT_SIZE];
@@ -19,7 +21,7 @@ public class MaxHeap {
 	 
 	 /**
 	  * constructor taking in array to make into max heap
-	  * @param taskArray
+	  * @param taskArray array of Tasks to be added to a max heap
 	  */
 	 public MaxHeap(Task[] taskArray) {
 		 heapArray = new Task[DEFAULT_SIZE];
@@ -30,6 +32,10 @@ public class MaxHeap {
 		 buildMaxHeap();
 	 }
 	 
+	 /**
+	  * Checks to see if the max heap is Empty
+	  * @returns true if empty and false if not empty
+	  */
 	 public boolean isEmpty() {
 		 if (heapArray[0] == null || size == 0) {
 			 return true;
@@ -38,6 +44,11 @@ public class MaxHeap {
 		 }
 	 }
 	 
+	 /**
+	  * Inserts the given task into the max heap and places it in the correct
+	  * place.
+	  * @param task The task to be inserted
+	  */
 	 public void insert (Task task) {
 		 checkForExpansion();
 		 heapArray[size] = task;
@@ -45,6 +56,11 @@ public class MaxHeap {
 		 bubbleUp(size - 1);
 	 }
 	 
+	 /**
+	  * Increases the key of the task and moves the tasks
+	  * @param index the index of the task
+	  * @param task the task
+	  */
 	 public void increaseKey(int index, Task task) throws HeapException{
 		 if (task.compareTo(heapArray[index]) < 0) {
 			 throw new HeapException("New key must be larger than current key");
@@ -53,12 +69,19 @@ public class MaxHeap {
 		 bubbleUp(index);
 	 }
 	 
+	 /**
+	  * Checks to see if the underlying array needs to be exapanded
+	  */
 	 private void checkForExpansion() {
 		 if (size != 0 && (heapArray[size - 1]) != null) {
 			 Arrays.copyOf(heapArray, size * 2);
 		 }
 	 }
 	 
+	 /**
+	  * Bubbles up the values to their correct place
+	  * @param index the index of the task to bubble up
+	  */
 	 private void bubbleUp(int index) {
 		 while (index > 0 && (heapArray[getParent(index)].compareTo(heapArray[index]) < 0)) {
 			 swap(index, getParent(index));
@@ -66,6 +89,11 @@ public class MaxHeap {
 		 }
 	 }
 	 
+	 /**
+	  * Extracts the max task 
+	  * @return
+	  * @throws HeapException
+	  */
 	 public Task extractMax() throws HeapException {
 		 Task max = max();
 		 heapArray[0] = heapArray[size - 1];
@@ -74,6 +102,11 @@ public class MaxHeap {
 		 return max;
 	 }
 	 
+	 /**
+	  * Returns the max task while keeping it in the max heap
+	  * @return the max task
+	  * @throws HeapException If the heap is empty
+	  */
 	 public Task max() throws HeapException {
 		 if (size < 1) {
 			 throw new HeapException("heap underflow");
@@ -81,12 +114,20 @@ public class MaxHeap {
 		 return heapArray[0];
 	 }
 	 
+	 /**
+	  * Builds the max heap buy running heapify
+	  */
 	 private void buildMaxHeap() {
 		 for (int i = ((size / 2) - 1); i >= 0; i--) {
 			 heapify(i);
 		 }
 	 }
 	 
+	 /**
+	  * Turns the heap into a max heap by comparing the values above the value at
+	  * the index to make sure it finds its correct spot
+	  * @param index the index of the task that is being checked
+	  */
 	 private void heapify(int index) {
 		 int l = getLeft(index);
 		 int r = getRight(index);
@@ -150,6 +191,11 @@ public class MaxHeap {
 		 return ((2 * taskIndex) + 2);
 	 }
 
+	 /**
+	  * Helper method for running tests to make sure that the 
+	  * contents of the array are correct.
+	  * @return the underlying array of tasks
+	  */
 	 public Task[] getHeapArray() {
 		Task[] heapArrayCopy = new Task[heapArray.length];
 		for (int i = 0; i < heapArray.length; i++) {

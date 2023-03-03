@@ -1,6 +1,8 @@
 /**
+ * Task class for creating and interacting with task objects within
+ * a max heap for the Stardew Valley Project
  * @author Tyler Pierce
- *
+ * @version Spring 2023
  */
 public class Task implements TaskInterface, Comparable {
 	private int priority = 0;
@@ -9,6 +11,12 @@ public class Task implements TaskInterface, Comparable {
 	private int hourCreated = 100;
 	private String taskDescription;
 	
+	/**
+	 * Constructor for creating a new task
+	 * @param hourCreated the hour that the task is being created at
+	 * @param taskType the type of task (i.e. minging. fishing, etc.)
+	 * @param taskDescription description of the task
+	 */
 	public Task(int hourCreated, TaskInterface.TaskType taskType, String taskDescription) {
 		this.priority = 0;
 		this.taskType = taskType;
@@ -69,10 +77,18 @@ public class Task implements TaskInterface, Comparable {
 		}
 	}
 	
+	/**
+	 * Getter for getting the task description
+	 * @return the task description
+	 */
 	public String getTaskDescription() {
 		return taskDescription;
 	}
 	
+	/**
+	 * Gives the hour that the task was created
+	 * @return the hour the task was created
+	 */
 	public int getHourCreated() {
 		return hourCreated;
 	}

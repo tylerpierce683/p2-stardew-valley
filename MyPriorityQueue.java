@@ -1,10 +1,14 @@
 /**
+ * Class used for creating and using a priority queue as the front end of the max heap
  * @author Tyler Pierce
- *
+ * @version Spring 2023
  */
 public class MyPriorityQueue extends MaxHeap implements PriorityQueueInterface {
 	private MaxHeap heap;
 	
+	/**
+	 * Constructor creating a priority queue that intitalizes a max heap
+	 */
 	public MyPriorityQueue() {
 		heap = new MaxHeap();
 	}
